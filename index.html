@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NinjaVsNazi!</title>
+    <link rel="icon" href="favicon.png" />
+    <link href="/Bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
+    <script language="javascript" type="text/javascript" src="/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="/Bootstrap/js/bootstrap.js"></script>
+    <script language="javascript" type="text/javascript" src="/sketch.js"></script>
+    <script language="javascript" type="text/javascript" src="/navbar.js"></script>
+
+</head>
+
+<body>
+    <meta charset="utf-8">
+    <script src="https://localhost/socket.io/socket.io.js"></script>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class = "profile-pic-container" id='profilePicContainer'>
+                    <img class = 'profile-pic' id = 'profilePic'>
+                </div>
+                <li id = 'account' style = "display: none;"><a href="/account">Account</a></li>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control" id ='email'>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control" id = 'password'>
+                    </div>
+                    <button type="button" class="btn btn-success" id='signIn'>Sign in</button>
+                    <a class="btn btn-info" href="/register.html" role="button" id = 'Register'>Register</a>
+                </form>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+    <div class = "animation">
+        <script language="javascript" type="text/javascript" src="/background-animation.js"></script>
+    </div>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="mastfoot" style='position:absolute; left: 50%; transform: translate(-50%, 0%);'>
+                <p>A game by Anko&Hars</p>
+            </div>
+
+
+            <div class="cover-container" style="position:absolute; top: -8%; left: 35%; transform: translate(-50%, 0%);">
+
+                <div class="inner-cover">
+                    <div class="container">
+                        <div class="row">
+                            <svg viewBox="0 0 960 300">
+                              <symbol id="s-text">
+                                <text text-anchor="middle" x="50%" y="80%">NinjaVsNazi.io</text>
+                              </symbol>
+
+                              <g class = "g-ants">
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                              </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <h1 class="cover-heading">Shooter.io !</h1> -->
+        </div>
+        <div class="container" style="position:absolute; top: 20%; left: 50%; transform: translate(-50%, 0%);">
+            <div class="row">
+                <div class="board">
+                    <ul class="nav nav-tabs">
+                        <div class="liner"></div>
+                        <li rel-index="0" class="active">
+                            <a href="#step-1" class="btn" aria-controls="step-1" role="tab" data-toggle="tab">
+                                <span><i class="glyphicon glyphicon-user"></i></span>
+                            </a>
+                        </li>
+                        <li rel-index="1">
+                            <a href="#step-2" class="btn disabled" aria-controls="step-2" role="tab" data-toggle="tab">
+                                <span><i class="glyphicon glyphicon-fire"></i></span>
+                            </a>
+                        </li>
+                        <li rel-index="2">
+                            <a href="#step-3" class="btn disabled" aria-controls="step-3" role="tab" data-toggle="tab">
+                                <span><i class="glyphicon glyphicon-sunglasses"></i></span>
+                            </a>
+                        </li>
+                        <li rel-index="3">
+                            <a href="#step-4" class="btn disabled" aria-controls="step-4" role="tab" data-toggle="tab">
+                                <span><i class="glyphicon glyphicon-ok"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active">
+                        <span class="label label-default">PSEUDO</span>
+                        <div class="col-md-12">
+                            <div class="row form-group product-chooser">
+                                <input type="text" class="form-control" placeholder="Pseudo" id="Pseudo" style="width: 60%; position:absolute; top: 50%;left: 50%; transform: translate(-50%, 0%);" value="_Steven"></input>
+                                <button id="step-1-next" class="btn btn-lg btn-primary nextBtn pull-right">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="step-2">
+                        <span class="label label-default">GAMEMODES</span>
+                        <div class="col-md-12">
+
+                            <div class="row form-group product-chooser" style="width: 75%;position:absolute; top:36%;left: 51%; transform: translate(-50%, 0%);">
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="product-chooser-item" id="FFA">
+                                        <img src="skull.png" class="img-rounded col-xs-4 col-sm-4 col-md-4 col-lg-12" alt="Mobile and Desktop">
+                                        <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
+                                            <span class="title">FFA</span>
+                                            <span class="description">Free For All, respawn enabeld. Work on your streaks and defeat your opponents.</span>
+                                            <input type="radio" name="product" value="mobile_desktop" checked="checked">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="product-chooser-item selected" id="King of the Hill">
+                                        <img src="crown.png" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Desktop">
+                                        <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
+                                            <span class="title">King of the Hill</span>
+                                            <span class="description">Respawn disabeld, the gaz is spreading. Everyone is an ennemy, be the last man standing.</span>
+                                            <input type="radio" name="product" value="desktop">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="product-chooser-item" id="Gound War">
+                                        <img src="united-states.png" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Mobile and Desktop">
+                                        <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
+                                            <span class="title">Ground War</span>
+                                            <span class="description">Respawn enabled, team game. Play with your allies and take territoires across the map.</span>
+                                            <input type="radio" name="product" value="mobile_desktop" checked="checked">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="step-2-next" class="btn btn-lg btn-primary pull-right">Next</button>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="step-3">
+                        <span class="label label-default">SKINS</span>
+                        <div class="col-md-12">
+                            <div class="row form-group product-chooser" style="width: 75%;position:absolute; top:36%;left: 64%; transform: translate(-50%, 0%);">
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="product-chooser-item" id="ninja">
+                                        <img src="ninja.png" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Mobile and Desktop">
+                                        <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
+                                            <span class="title">Congolese Ninja</span>
+                                            <input type="radio" name="product" value="mobile_desktop" checked="checked">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="product-chooser-item selected" id="nazi">
+                                        <img src="nazi.png" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Desktop">
+                                        <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
+                                            <span class="title">Angry German</span>
+                                            <input type="radio" name="product" value="desktop">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="step-3-next" class="btn btn-lg btn-primary pull-right">Next</button>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="step-4">
+                      <span class="label label-default">PLAY</span>
+                        <div class="col-md-12">
+                            <div class="login-button" style="width: 70%; position:absolute; top: 50%;left: 50%; transform: translate(-50%, 0%);">
+                                <!-- <a class="btn3d btn btn-default btn-lg" href="/Server/H1Z1/Client/index.html","/Server/H1Z1/Client/sketch.js", role="button">Play</a> -->
+                                <button type="submit" class="btn3d btn btn-default btn-lg" id="Login">Play</button>
+                            </div>
+                            <button id="step-4-next" class="btn btn-lg btn-primary pull-right">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+div.overlay-container{
+	position: absolute;
+	top:50%;
+	background-color: rgba(50, 50, 50, 0.5);
+	z-index: 9999;
+}
+div.overlay-container h1{
+	top:50%;
+	left: 50%;
+	transform:translate(50%,50%);
+	color:red;
+	font-family: 'Helvetica';
+	font-size: 40px;
+}
